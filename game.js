@@ -23,7 +23,7 @@ class Vector {
 // console.log(`Исходное расположение: ${start.x}:${start.y}`);
 // console.log(`Текущее расположение: ${finish.x}:${finish.y}`);
 class  Actor {
-  constructor(location = new Vector(), size = new Vector(1,1), speed = new Vector()) {
+  constructor(location = new Vector(0,0), size = new Vector(1,1), speed = new Vector(0,0)) {
     if (!(location instanceof Vector) || !(size instanceof Vector) || !(speed instanceof Vector)) {
         throw new Error('В конструктор класса Actor передан не вектор!');
   } else {
@@ -31,21 +31,25 @@ class  Actor {
     this.size = size;
     this.speed = speed;
     Object.defineProperty(this, "left", {
-    value: this.pos.x,
-    writable: false
-    });
+		get: function() {
+			return this.pos.x;
+			}
+	});
     Object.defineProperty(this, "top", {
-    value: this.pos.y,
-    writable: false
-    });
+		get: function() {
+			return this.pos.y;
+			}
+	});
     Object.defineProperty(this, "right", {
-    value:  this.pos.x + this.size.x,
-    writable: false
-    });
+		get: function() {
+			return this.pos.x + this.size.x;
+			}
+	});
     Object.defineProperty(this, "bottom", {
-    value: this.pos.y + this.size.y,
-    writable: false
-    });
+		get: function() {
+			return this.pos.y + this.size.y;
+			}
+	});
     Object.defineProperty(this, "type", {
     value: "actor",
     writable: false
@@ -54,8 +58,64 @@ class  Actor {
 }
  act() {}
  isIntersect (actor) {
-   if (!(actor instanceof Actor)) {
-    	throw new Error('В метод isIntersect не передан движущийся объект типа Actor.');
+   if (!(actor instanceof Actor) ) {
+    	throw new Error('В метод isIntersect не передан движущийся объект типа Actor!');
     }
  }
 }
+//Пример использования класса Actor
+//const items = new Map();
+//const player = new Actor();
+//items.set('Игрок', player);
+//items.set('Первая монета', new Actor(new Vector(10, 10)));
+//items.set('Вторая монета', new Actor(new Vector(15, 5)));
+
+//function position(item) {
+//  return ['left', 'top', 'right', 'bottom']
+//    .map(side => `${side}: ${item[side]}`)
+//    .join(', ');
+//}
+
+//function movePlayer(x, y) {
+//  player.pos = player.pos.plus(new Vector(x, y));
+//}
+
+//function status(item, title) {
+//  console.log(`${title}: ${position(item)}`);
+//  if (player.isIntersect(item)) {
+//    console.log(`Игрок подобрал ${title}`);
+//  }
+//}
+
+//items.forEach(status);
+// movePlayer(10, 10);
+// items.forEach(status);
+// movePlayer(5, -5);
+// items.forEach(status);const items = new Map();
+// const player = new Actor();
+// items.set('Игрок', player);
+// items.set('Первая монета', new Actor(new Vector(10, 10)));
+// items.set('Вторая монета', new Actor(new Vector(15, 5)));
+
+// function position(item) {
+//   return ['left', 'top', 'right', 'bottom']
+//     .map(side => `${side}: ${item[side]}`)
+//     .join(', ');
+// }
+
+// function movePlayer(x, y) {
+//   player.pos = player.pos.plus(new Vector(x, y));
+// }
+
+// function status(item, title) {
+//   console.log(`${title}: ${position(item)}`);
+//   if (player.isIntersect(item)) {
+//     console.log(`Игрок подобрал ${title}`);
+//   }
+// }
+
+// items.forEach(status);
+// movePlayer(10, 10);
+// items.forEach(status);
+// movePlayer(5, -5);
+// items.forEach(status);
