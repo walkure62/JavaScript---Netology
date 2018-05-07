@@ -56,42 +56,31 @@ class  Actor {
     });
   }
 }
- act() {}
+ act() {} // Метод, который ничего не делает.
  isIntersect (actor) {
-   if (!(actor instanceof Actor) ) {
-    	throw new Error('В метод isIntersect не передан движущийся объект типа Actor!');
+   if (!(actor instanceof Actor || actor === undefined) ) {
+    	throw new Error('В метод isIntersect не передан движущийся объект типа Actor!'); // Если передать аргумент не типа Actor или вызвать без аргументов, то метод бросает исключение.
     }
- }
+   if (actor === this) { // Если передать в качестве аргумента этот же объект, то всегда возвращает false.
+      return false;
+    }
+   if (this.left >= actor.right) {
+      return false;
+    }
+   if (this.right <= actor.left) {
+      return false;
+    }
+   if (this.bottom <= actor.top) {
+      return false;
+    }
+   if (this.top >= actor.bottom) {
+      return false;
+    }
+    return true;
+  }
 }
 //Пример использования класса Actor
-//const items = new Map();
-//const player = new Actor();
-//items.set('Игрок', player);
-//items.set('Первая монета', new Actor(new Vector(10, 10)));
-//items.set('Вторая монета', new Actor(new Vector(15, 5)));
-
-//function position(item) {
-//  return ['left', 'top', 'right', 'bottom']
-//    .map(side => `${side}: ${item[side]}`)
-//    .join(', ');
-//}
-
-//function movePlayer(x, y) {
-//  player.pos = player.pos.plus(new Vector(x, y));
-//}
-
-//function status(item, title) {
-//  console.log(`${title}: ${position(item)}`);
-//  if (player.isIntersect(item)) {
-//    console.log(`Игрок подобрал ${title}`);
-//  }
-//}
-
-//items.forEach(status);
-// movePlayer(10, 10);
-// items.forEach(status);
-// movePlayer(5, -5);
-// items.forEach(status);const items = new Map();
+// const items = new Map();
 // const player = new Actor();
 // items.set('Игрок', player);
 // items.set('Первая монета', new Actor(new Vector(10, 10)));
@@ -119,3 +108,25 @@ class  Actor {
 // items.forEach(status);
 // movePlayer(5, -5);
 // items.forEach(status);
+class Level {
+  constructor(gameBoardGrid, theListOfMovingObjects) {
+this.grid = gameBoardGrid;
+this.actors = theListOfMovingObjects;
+this.player = this.theListOfMovingObjects.find(actor => actor.type === "player");
+this.height = gameBoardGrid.length;
+this.width = Math.max(0, ...gameBoardGrid.map(item => item.length));
+this.status = null;
+this.finishDelay = 1;
+}
+isFinished () {
+  if (this.status !== 0 && this.finishDelay < 0) {
+  return true;
+}
+return false;
+}
+actorAt (actor) {
+  if (!(actor instanceof Actor || actor === undefined) ) {
+     throw new Error('В метод isIntersect не передан движущийся объект типа Actor!'); // Если передать аргумент не типа Actor или вызвать без аргументов, то метод бросает исключение.
+   }
+   return this.actors.find(el => actor.isIntersect(el));
+}
