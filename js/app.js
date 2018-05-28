@@ -19,7 +19,7 @@ function loadLevels() {
   });
 }
 
-const scale = 30;
+const scale = 40;
 const maxStep = 0.05;
 const wobbleSpeed = 8, wobbleDist = 0.07;
 const playerXSpeed = 7;

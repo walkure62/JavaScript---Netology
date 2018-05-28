@@ -3,9 +3,12 @@ hidden {
 }
 
 .background {
-  background: rgb(52, 166, 251);
+  /* background: rgb(52, 166, 251); */
   table-layout: fixed;
   border-spacing: 0;
+  background-image: url(/image/fon.jpeg);
+  background-size: cover;
+  background-position: center;
 }
 
 .background td {
@@ -13,19 +16,33 @@ hidden {
 }
 
 .fireball {
-  background: rgb(255, 100, 100);
+ /* background: rgb(255, 100, 100); */
+ border-radius: 10px;
+ background-image: url(/image/fireball.png);
+ background-size: cover;
+ background-position: center;
+ display: inline-block;
 }
 
 .lava {
-  background: rgb(255, 100, 100);
+  /* background: rgb(255, 100, 100); */
+  background-image: url(/image/lava.png);
+  background-size: cover;
+  background-position: center;
 }
 
 .elevator {
-  background: rgb(229, 229, 229);
+  /* background: rgb(229, 229, 229); */
+  background-image: url(/image/wall.jpg);
+  background-size: cover;
+  background-position: center;
 }
 
 .wall {
-  background: white;
+  /* background: white; */
+  background-image: url(/image/wall.jpg);
+  background-size: cover;
+  background-position: center;
 }
 
 .actor {
@@ -33,19 +50,38 @@ hidden {
 }
 
 .coin {
-  background: rgb(241, 229, 89);
+  border-radius: 10px;
+  background-image: url(/image/coin.png);
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
 }
 
 .player {
-  background: rgb(64, 64, 64);
+  /* background: rgb(64, 64, 64); */
+  background-image: url(/image/player.png);
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  background-repeat: no-repeat;
 }
 
 .lost .player {
-  background: rgb(160, 64, 64);
+  /* background: rgb(160, 64, 64); */
+  background-image: url(/image/die_player.png);
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  background-repeat: no-repeat;
 }
 
 .won .player {
-  box-shadow: -4px -7px 8px white, 4px -7px 8px white;
+  /* box-shadow: -4px -7px 8px white, 4px -7px 8px white; */
+  background-image: url(/image/player_won.png);
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  background-repeat: no-repeat;
 }
 
 .game {
